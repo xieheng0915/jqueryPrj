@@ -1,0 +1,51 @@
+init: 
+    1) draw the grid cell by cell 
+    2) set each cell click attribute (clickcell)
+    3) draw the digit panel and set the top three buttons style 
+
+clickCell: 
+    1）T： current array(9,9) of the grid
+       Tref: used for record the grid style of each cell
+    2) Call allowed(T)
+    3) Based on the returned array, set the digital panel style, disable unallowed
+
+
+Allowed: 
+    1) find allowed numbers of digital units of the digital panel and disable the others
+
+
+getRandomGrid: 
+    1) call _getRandomGrid, set timeout
+  
+_getRandomGrid:
+    1) call _getRandomGrid2, set cell value
+    2) updateGrid(): update value of each cell
+    3) based on the updated grid, renew the clickable attribute
+
+_getRandomGrid2:
+    1) construct [9,9] array, kept array
+    2) call _findValidityClass, check solutions
+    3) If solution is not enough, use Tsol(?)
+    4) based on nlevel, loop nlevel times
+
+
+findAcceptableGrid: 
+    1) call _findAcceptableGrid to set the value of each cell
+    2) save T to Tsol 
+
+_findAcceptableGrid:
+    1) call bestHypothesis: find appropraite numbers, return by array, return the first and second elements
+    2) call shuffle: for each array, shuffle 
+    3) call back
+
+
+bestHypothesis: 
+    1) call Allowed, compute allowed numbers list for each cell
+    2) return the backup array
+
+shuffle: 
+    1) for each element from inputted array, generate random number and floor them, set to index
+    2) exchange value: array[random index] & random[sequenced number]
+
+_findValidityClass:
+    1) call bestHypothesis, get returned array, check solutions
